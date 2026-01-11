@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - Zilu Zhou's Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        h1 a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        nav {
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .note {
+            background-color: #f9f9f9;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .note h3 {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .note-meta {
+            color: #666;
+            font-size: 0.85em;
+            margin-bottom: 12px;
+        }
+
+        .note-content {
+            color: #444;
+        }
+
+        .note-content p {
+            margin-bottom: 10px;
+        }
+
+        .note-content code {
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+        }
+
+        .note-content pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .note-content pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #e0e0e0;
+            color: #555;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-right: 6px;
+            margin-top: 8px;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="/">Zilu Zhou's Blog</a></h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/posts/">Posts</a>
+            <a href="/projects/">Projects</a>
+            <a href="/notes/">Notes</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Notes</h2>
+
+        <div class="note">
+            <h3>PyTorch Geometric Data Loader Gotcha</h3>
+            <div class="note-meta">January 11, 2025</div>
+            <div class="note-content">
+                <p>When using PyTorch Geometric's DataLoader, make sure your Data objects have the correct shape. A common error:</p>
+                <pre><code>RuntimeError: Expected edge_index to be of shape [2, num_edges]</code></pre>
+                <p>Solution: Always transpose edge indices before creating Data object:</p>
+                <pre><code>edge_index = torch.tensor(edges, dtype=torch.long).t().contiguous()</code></pre>
+            </div>
+            <span class="tag">PyTorch</span>
+            <span class="tag">GNN</span>
+        </div>
+
+        <div class="note">
+            <h3>Flask Template Paths in Serverless</h3>
+            <div class="note-meta">January 8, 2025</div>
+            <div class="note-content">
+                <p>When deploying Flask to Vercel, template paths can break. Add this to your Flask app init:</p>
+                <pre><code>import os
+template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+app = Flask(__name__, template_folder=template_dir)</code></pre>
+            </div>
+            <span class="tag">Flask</span>
+            <span class="tag">Deployment</span>
+        </div>
+
+        <div class="note">
+            <h3>React Native File Upload Pattern</h3>
+            <div class="note-meta">January 5, 2025</div>
+            <div class="note-content">
+                <p>For uploading images in React Native with proper base64 encoding:</p>
+                <pre><code>const uploadImage = async (uri) => {
+  const base64 = await FileSystem.readAsStringAsync(uri, {
+    encoding: FileSystem.EncodingType.Base64,
+  });
+  // Send to backend
+};</code></pre>
+            </div>
+            <span class="tag">React Native</span>
+            <span class="tag">Mobile</span>
+        </div>
+
+        <div class="note">
+            <h3>Debugging Gradient Flow in Neural Networks</h3>
+            <div class="note-meta">December 30, 2024</div>
+            <div class="note-content">
+                <p>Quick check for vanishing gradients in PyTorch:</p>
+                <pre><code>for name, param in model.named_parameters():
+    if param.grad is not None:
+        print(f"{name}: {param.grad.abs().mean()}")</code></pre>
+                <p>If gradients are < 1e-7, you likely have vanishing gradient issues.</p>
+            </div>
+            <span class="tag">Deep Learning</span>
+            <span class="tag">Debugging</span>
+        </div>
+
+        <div class="note">
+            <h3>MongoDB Aggregation for Grouped Queries</h3>
+            <div class="note-meta">December 22, 2024</div>
+            <div class="note-content">
+                <p>Useful aggregation pattern for grouping by date:</p>
+                <pre><code>db.collection.aggregate([
+  {
+    $group: {
+      _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+      count: { $sum: 1 }
+    }
+  },
+  { $sort: { _id: -1 } }
+])</code></pre>
+            </div>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Database</span>
+        </div>
+
+        <div class="note">
+            <h3>Handling SMILES String Encoding</h3>
+            <div class="note-meta">December 18, 2024</div>
+            <div class="note-content">
+                <p>When working with molecular SMILES, always validate before processing:</p>
+                <pre><code>from rdkit import Chem
+
+def is_valid_smiles(smiles):
+    mol = Chem.MolFromSmiles(smiles)
+    return mol is not None</code></pre>
+                <p>Invalid SMILES can crash your entire training pipeline.</p>
+            </div>
+            <span class="tag">Chemistry ML</span>
+            <span class="tag">Data Processing</span>
+        </div>
+
+        <div class="note">
+            <h3>Monte Carlo Sampling Tip</h3>
+            <div class="note-meta">December 10, 2024</div>
+            <div class="note-content">
+                <p>For better convergence in MCMC, always check acceptance rate:</p>
+                <pre><code>acceptance_rate = accepted_samples / total_samples
+# Aim for 0.2-0.5 range
+# Adjust proposal distribution if outside this range</code></pre>
+            </div>
+            <span class="tag">Statistics</span>
+            <span class="tag">Monte Carlo</span>
+        </div>
+
+        <div class="note">
+            <h3>Quick Git Branch Cleanup</h3>
+            <div class="note-meta">December 5, 2024</div>
+            <div class="note-content">
+                <p>Delete all local branches except main/master:</p>
+                <pre><code>git branch | grep -v "main\|master" | xargs git branch -D</code></pre>
+            </div>
+            <span class="tag">Git</span>
+            <span class="tag">Tools</span>
+        </div>
+
+        <nav style="margin-top: 40px;">
+            <a href="/">← Back to Home</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>© 2025 Zilu Zhou. Built with curiosity and caffeine.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Zilu Zhou's Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        h1 a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        nav {
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .project {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .project:last-child {
+            border-bottom: none;
+        }
+
+        .project h3 {
+            font-size: 1.4em;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .project-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+
+        .project-tags {
+            margin-bottom: 12px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #f0f0f0;
+            color: #555;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            margin-right: 8px;
+            margin-bottom: 5px;
+        }
+
+        .project p {
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        .project ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .project li {
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .project-links a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        a {
+            color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="/">Zilu Zhou's Blog</a></h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/posts/">Posts</a>
+            <a href="/projects/">Projects</a>
+            <a href="/notes/">Notes</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Projects</h2>
+
+        <div class="project">
+            <h3>Memory Storage Application</h3>
+            <div class="project-meta">Current Project | 2024 - Present</div>
+            <div class="project-tags">
+                <span class="tag">Flask</span>
+                <span class="tag">React Native</span>
+                <span class="tag">Mobile Dev</span>
+                <span class="tag">Full-Stack</span>
+            </div>
+            <p>A cross-platform memory storage application for managing photos and text content with advanced search capabilities.</p>
+            <ul>
+                <li>Built Flask backend with RESTful API for data management</li>
+                <li>Developed React Native frontend for iOS and Android compatibility</li>
+                <li>Implemented keyword filtering and date-based organization</li>
+                <li>Exploring both local and cloud storage solutions for scalability</li>
+            </ul>
+            <div class="project-links">
+                <a href="#">GitHub</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Molecular Property Prediction</h3>
+            <div class="project-meta">Machine Learning | 2024</div>
+            <div class="project-tags">
+                <span class="tag">PyTorch</span>
+                <span class="tag">Graph Neural Networks</span>
+                <span class="tag">Deep Learning</span>
+                <span class="tag">Chemistry ML</span>
+            </div>
+            <p>Comprehensive comparison of five neural network architectures for predicting molecular properties from SMILES representations.</p>
+            <ul>
+                <li>Implemented and compared DNN, CNN, RNN/LSTM, Transformer, and GNN architectures</li>
+                <li>Used PyTorch Geometric for graph-based molecular representations</li>
+                <li>Created unified training pipeline with visualization comparisons</li>
+                <li>Debugged complex data handling issues with graph neural networks</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h3>Canvas Replication Web App</h3>
+            <div class="project-meta">Web Development | 2024</div>
+            <div class="project-tags">
+                <span class="tag">Next.js</span>
+                <span class="tag">MongoDB</span>
+                <span class="tag">Full-Stack</span>
+            </div>
+            <p>A learning management system inspired by Canvas, built with modern web technologies.</p>
+            <ul>
+                <li>Developed with Next.js for server-side rendering and optimal performance</li>
+                <li>Integrated MongoDB for flexible data storage</li>
+                <li>Implemented user authentication and course management features</li>
+            </ul>
+            <div class="project-links">
+                <a href="#">GitHub</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Personal Blog Platform</h3>
+            <div class="project-meta">Web Development | 2024</div>
+            <div class="project-tags">
+                <span class="tag">Flask</span>
+                <span class="tag">Python</span>
+                <span class="tag">Vercel</span>
+            </div>
+            <p>Self-taught Flask application deployed to serverless environment.</p>
+            <ul>
+                <li>Built from scratch using Flask framework</li>
+                <li>Deployed to Vercel's serverless platform</li>
+                <li>Solved 404 routing issues and template path configurations</li>
+                <li>Restructured application for serverless architecture compatibility</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h3>Neural Network Drug Classification</h3>
+            <div class="project-meta">Machine Learning | 2024</div>
+            <div class="project-tags">
+                <span class="tag">PyTorch</span>
+                <span class="tag">Deep Learning</span>
+                <span class="tag">Classification</span>
+            </div>
+            <p>Comparative study of neural network implementations for drug classification tasks.</p>
+            <ul>
+                <li>Implemented multiple neural network architectures from scratch</li>
+                <li>Debugged backpropagation implementations for numerical consistency</li>
+                <li>Resolved cached activation values and derivative computation issues</li>
+                <li>Performed comprehensive accuracy and performance comparisons</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h3>Monte Carlo Stochastic Systems</h3>
+            <div class="project-meta">Mathematical Computing | 2022</div>
+            <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Statistics</span>
+                <span class="tag">Monte Carlo</span>
+            </div>
+            <p>Applied Monte Carlo methods to analyze stochastic systems and game theory problems.</p>
+            <ul>
+                <li>Implemented Marsaglia-Tsang algorithm for efficient sampling</li>
+                <li>Used Markov Chain Monte Carlo methods for gambler's ruin problem</li>
+                <li>Analyzed two-player game properties through probabilistic simulation</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h3>Anti-Scam Educational Game</h3>
+            <div class="project-meta">Game Development | 2024</div>
+            <div class="project-tags">
+                <span class="tag">Twine</span>
+                <span class="tag">Interactive Fiction</span>
+                <span class="tag">Education</span>
+            </div>
+            <p>Interactive educational game designed to help elderly people recognize and avoid scams.</p>
+            <ul>
+                <li>Created engaging narrative-based scenarios</li>
+                <li>Implemented decision-tree gameplay mechanics</li>
+                <li>Focused on real-world scam prevention strategies</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h3>MVC Text-Based Game</h3>
+            <div class="project-meta">Software Engineering | 2024</div>
+            <div class="project-tags">
+                <span class="tag">Java</span>
+                <span class="tag">MVC</span>
+                <span class="tag">OOP</span>
+            </div>
+            <p>Object-oriented text-based game demonstrating Model-View-Controller architecture.</p>
+            <ul>
+                <li>Implemented clean MVC separation of concerns</li>
+                <li>Applied object-oriented design principles</li>
+                <li>Created extensible game engine architecture</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h3>Python Memory Card Game</h3>
+            <div class="project-meta">Game Development | 2024</div>
+            <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Game Dev</span>
+            </div>
+            <p>Classic memory matching game built with Python.</p>
+            <ul>
+                <li>Implemented game logic and state management</li>
+                <li>Created interactive user interface</li>
+                <li>Applied algorithmic thinking to game mechanics</li>
+            </ul>
+        </div>
+
+        <nav style="margin-top: 40px;">
+            <a href="/">← Back to Home</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>© 2025 Zilu Zhou. Built with curiosity and caffeine.</p>
+    </footer>
+</body>
+</html>
