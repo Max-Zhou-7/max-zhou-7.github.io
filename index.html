@@ -1,202 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zilu Zhou's Blog</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zilu Zhou (Max)</title>
+<meta name="description" content="Zilu (Max) Zhou, MS CS student at Northeastern University working on egocentric computer vision: hand-centric perception in multi-person video, multi-wearer video understanding, and JEPA-style world models.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --paper: #F8F9FA; --ink: #1D2633; --muted: #5E6876; --rule: #DDE1E6;
+    --a: #2B62C2; --b: #B5671A;
+    --a-wash: rgba(43, 98, 194, .13); --b-wash: rgba(181, 103, 26, .13);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #15181D; --ink: #E3E6EB; --muted: #9AA3AF; --rule: #2B313A;
+      --a: #7FA7EE; --b: #E2A35E;
+      --a-wash: rgba(127, 167, 238, .17); --b-wash: rgba(226, 163, 94, .17);
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+         font: 400 1.125rem/1.65 var(--serif); }
+  .wrap { max-width: 42rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+  header.site { margin-bottom: 2.5rem; }
+  .name { font-size: 2.25rem; line-height: 1.15; font-weight: 600; margin: 0; letter-spacing: -.01em; }
+  .name a { color: inherit; text-decoration: none; }
+  .tagline { font-family: var(--sans); font-size: .95rem; color: var(--muted); margin: .45rem 0 1.1rem; }
+  nav { font-family: var(--sans); font-size: .95rem; display: flex; flex-wrap: wrap; gap: .4rem 1.25rem;
+        border-bottom: 1px solid var(--rule); padding-bottom: .75rem; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--a); }
+  nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+  h2 { font-size: 1.4rem; font-weight: 600; line-height: 1.3; margin: 2.75rem 0 .75rem; }
+  h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.35; margin: 1.75rem 0 .25rem; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--a); text-underline-offset: .15em; }
+  a:focus-visible { outline: 2px solid var(--a); outline-offset: 2px; border-radius: 2px; }
+  ul { padding-left: 1.2rem; margin: 0 0 1rem; }
+  li { margin: .35rem 0; }
+  .meta { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin: 0 0 .7rem; }
+  .status { font-family: var(--sans); font-size: .95rem; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fff;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+  figure { margin: 1.5rem 0 1.75rem; }
+  figure svg { display: block; width: 100%; height: auto; }
+  figcaption { font-family: var(--sans); font-size: .88rem; line-height: 1.5; color: var(--muted); margin-top: .5rem; }
+  .fov-a { fill: var(--a-wash); } .fov-b { fill: var(--b-wash); }
+  .table { fill: none; stroke: var(--muted); stroke-opacity: .45; stroke-width: 2; }
+  .arm-a, .arm-b { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-opacity: .5; }
+  .arm-a { stroke: var(--a); } .arm-b { stroke: var(--b); }
+  .person-a, .person-b { fill: var(--paper); stroke-width: 2; }
+  .person-a { stroke: var(--a); } .person-b { stroke: var(--b); }
+  .hand-a { fill: var(--a); } .hand-b { fill: var(--b); }
+  .ask { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 4 4; }
+  .lbl { font: 500 13px var(--sans); fill: var(--muted); }
+  .lbl-a { fill: var(--a); } .lbl-b { fill: var(--b); }
 
-        header {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-size: 2em;
-            margin-bottom: 15px;
-        }
-
-        h1 a {
-            color: #333;
-            text-decoration: none;
-        }
-
-        nav {
-            margin-bottom: 20px;
-        }
-
-        nav a {
-            color: #0066cc;
-            text-decoration: none;
-            margin-right: 20px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        h2 {
-            font-size: 1.5em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        h3 {
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            margin-bottom: 15px;
-        }
-
-        ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        strong {
-            font-weight: 600;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid #ddd;
-            margin: 30px 0;
-        }
-
-        footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            text-align: center;
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        a {
-            color: #0066cc;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .intro {
-            margin-bottom: 30px;
-        }
-
-        .social-links {
-            margin-top: 10px;
-        }
-
-        .social-links a {
-            margin-right: 15px;
-        }
-    </style>
+  dl.skills { display: grid; grid-template-columns: max-content 1fr; gap: .4rem 1.25rem; margin: 0; }
+  dl.skills dt { font-family: var(--sans); font-size: .9rem; color: var(--muted); padding-top: .2rem; }
+  dl.skills dd { margin: 0; }
+  footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+           font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+  @media (max-width: 540px) {
+    .wrap { padding-top: 2rem; }
+    .name { font-size: 1.9rem; }
+    dl.skills { grid-template-columns: 1fr; gap: 0; }
+    dl.skills dd { margin-bottom: .6rem; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1><a href="/">Zilu Zhou's Blog</a></h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/posts/">Posts</a>
-            <a href="/projects/">Projects</a>
-            <a href="/notes/">Notes</a>
-        </nav>
-    </header>
+<div class="wrap">
 
-    <main>
-        <div class="intro">
-            <p>I'm <strong>Zilu Zhou (Max)</strong>, a Computer Science graduate student at Northeastern University with a background in Applied Mathematics from UC Santa Barbara. My primary interests lie in machine learning, full-stack web development, and building practical applications that solve real problems. You can view my resume <a href="/static/Resume_2026_ML.pdf">here</a>.</p>
-        </div>
+<header class="site">
+  <h1 class="name"><a href="/">Zilu Zhou (Max)</a></h1>
+  <p class="tagline">Egocentric computer vision, Northeastern University</p>
+  <nav aria-label="Main">
+    <a href="/" aria-current="page">Home</a>
+    <a href="/projects/">Projects</a>
+    <a href="/posts/">Posts</a>
+    <a href="/notes/">Notes</a>
+    <a href="/static/Zilu_Zhou_CV.pdf">CV</a>
+  </nav>
+</header>
 
-        <h2>More about me</h2>
+<main>
+<p>I’m Zilu Zhou, and I go by Max. I’m a master’s student in Computer Science at Northeastern University’s Khoury College, graduating in December 2026, and a student researcher in <a href="https://ccs.neu.edu/home/eelhami">Prof. Ehsan Elhamifar</a>’s MCADS lab. I work on egocentric computer vision: understanding video recorded from wearable cameras such as smart glasses. Before Northeastern, I studied applied mathematics at UC Santa Barbara.</p>
+<p>I’m looking for research assistant and PhD positions in computer vision. You can reach me at <a href="mailto:ziluzhou7@gmail.com">ziluzhou7@gmail.com</a>.</p>
 
-        <ul>
-            <li><strong>Machine Learning</strong>:<br>
-                Experienced with various neural network architectures including deep neural networks for image classification and drug classification. Proficient with PyTorch and Scikit-learn. Applied statistical computing and Monte Carlo methods for stochastic systems, including Markov Chain simulations.</li>
-            
-            <li><strong>Full-Stack Development</strong>:<br>
-                Proficient in building web applications with Flask and Next.js. Experience with React Native for cross-platform mobile development. Built projects ranging from blog platforms to Canvas replications using MongoDB. Currently working on personal projects involving memory storage applications with photo and text management.</li>
-            
-            <li><strong>Software Engineering</strong>:<br>
-                Strong foundation in computer systems, algorithms, and object-oriented design. Experience with both frontend and backend development using JavaScript, Python, and Java. Comfortable with MVC architecture and building interactive applications.</li>
-            
-            <li><strong>Mathematics & Statistics</strong>:<br>
-                Deep background in applied mathematics including advanced statistics, linear algebra, numerical analysis, and operations research. Applied quadratic regression and Monte Carlo methods in practical implementations.</li>
-        </ul>
+<h2>Research interests</h2>
+<ul>
+  <li><strong>Hands in multi-person egocentric video.</strong> When two people work side by side, their hands share the frame while arms and bodies are often out of view. I’m interested in telling whose hand is whose, the wearer’s or a partner’s, and which hand it is, left or right. Current vision-language models still struggle with both.</li>
+  <li><strong>Multi-wearer video understanding.</strong> Using two synchronized egocentric views of the same cooperative activity, where each camera can see what the other misses, and reading a partner’s intent from gestures and other visible cues.</li>
+  <li><strong>World models for anticipation.</strong> JEPA-style models that predict in latent space, for anticipating what comes next in egocentric video and for detecting errors in procedural tasks.</li>
+  <li><strong>Toward AR assistance.</strong> In the long run, I want perception that is fast and reliable enough to drive real-time AR assistants, starting from the perception side and moving toward interaction.</li>
+</ul>
 
-        <hr>
+<h2>Current research</h2>
+<h3>Whose hand is it? A dual-egocentric benchmark for hand ownership</h3>
+<p class="meta">MCADS Lab, Khoury College, advised by Prof. Ehsan Elhamifar. June 2026 – present</p>
+<p>Given a hand visible in one person’s egocentric video during a cooperative task, the benchmark asks whether it belongs to the camera wearer or to their partner, in close-up views where body and arm cues are out of frame. Two people wear Meta Project Aria glasses, time-aligned with TICSync and co-registered in a shared coordinate frame with Aria MPS multi-SLAM.</p>
 
-        <h3>Personal Interests</h3>
+<figure>
+  <svg viewBox="0 0 640 250" role="img" aria-labelledby="fig-t fig-d">
+    <title id="fig-t">Top-down sketch of the two-wearer capture setup</title>
+    <desc id="fig-d">Two people wearing Aria glasses face each other across a table. Both cameras’ fields of view cover the shared workspace, where one hand from each person meets in the middle.</desc>
+    <path class="fov-a" d="M100 125 L428 44 A 338 338 0 0 1 428 206 Z"/>
+    <path class="fov-b" d="M540 125 L212 44 A 338 338 0 0 0 212 206 Z"/>
+    <rect class="table" x="200" y="62" width="240" height="126" rx="6"/>
+    <path class="arm-a" d="M68 88 Q150 76 246 96"/>
+    <path class="arm-a" d="M68 162 Q175 176 302 142"/>
+    <path class="arm-b" d="M572 88 Q490 76 394 98"/>
+    <path class="arm-b" d="M572 162 Q470 172 340 130"/>
+    <ellipse class="person-a" cx="62" cy="125" rx="18" ry="44"/>
+    <circle class="person-a" cx="80" cy="125" r="19"/>
+    <ellipse class="person-b" cx="578" cy="125" rx="18" ry="44"/>
+    <circle class="person-b" cx="560" cy="125" r="19"/>
+    <ellipse class="hand-a" cx="254" cy="98" rx="13" ry="9"/>
+    <ellipse class="hand-a" cx="308" cy="141" rx="13" ry="9"/>
+    <ellipse class="hand-b" cx="386" cy="100" rx="13" ry="9"/>
+    <ellipse class="hand-b" cx="334" cy="129" rx="13" ry="9"/>
+    <circle class="ask" cx="321" cy="135" r="34"/>
+    <text class="lbl lbl-a" x="70" y="192" text-anchor="middle">Wearer A</text>
+    <text class="lbl lbl-b" x="570" y="192" text-anchor="middle">Wearer B</text>
+    <text class="lbl" x="321" y="212" text-anchor="middle">Whose hand is whose?</text>
+  </svg>
+  <figcaption>Top-down sketch of the setup. Both cameras look at the shared workspace, so each view shows hands from both people with little of their arms or bodies. Because each camera also sees the partner, one view can supply the ownership label for the other.</figcaption>
+</figure>
 
-        <ul>
-            <li><strong>Building Tools</strong>: Enjoy creating personal productivity applications, from memory card games to anti-scam educational games.</li>
-            <li><strong>Problem Solving</strong>: Love tackling algorithmic challenges and exploring the intersection of mathematics and computer science.</li>
-            <li><strong>Open Source</strong>: Interested in contributing to ML and web development open source projects.</li>
-        </ul>
+<p>So far I’ve built and validated the two-headset capture setup, designed the cooperative tasks along three axes (physical coupling, coordination structure, and resource contention), collected recordings, tested hand segmentation with SAM 3, and started baseline evaluations of vision-language models. Next, I plan to build a real-time model that predicts ownership and chirality for each hand in this setting.</p>
+<p class="status">Status: data collection in progress. We plan an arXiv preprint with baseline results in winter 2026–27.</p>
 
-        <hr>
+<h2>This semester</h2>
+<ul>
+  <li>Predicting what a partner intends before they say it, from muted first-person video of both people, and testing which visible cues such as gestures make that possible (CS 7170, Multimodal Video Understanding, with Angshuman Basu).</li>
+  <li>Action-conditioned latent forecasting to fill in dropped frames of an egocentric video stream with a JEPA world model (CS 5330, Pattern Recognition and Computer Vision).</li>
+</ul>
+<p>Details are on the <a href="/projects/">projects page</a>.</p>
 
-        <h3>Current Pursuits</h3>
+<h2>Skills</h2>
+<dl class="skills">
+  <dt>Vision and ML</dt>
+  <dd>PyTorch, PyTorch Geometric, scikit-learn, OpenCV, SAM 3, MediaPipe</dd>
+  <dt>Egocentric capture</dt>
+  <dd>Project Aria SDK, Aria MPS multi-SLAM, TICSync, VRS, camera calibration</dd>
+  <dt>Computing</dt>
+  <dd>Slurm on H200 GPUs (Northeastern Explorer), Docker, Conda, Git</dd>
+  <dt>Languages</dt>
+  <dd>Python, C++, C, Java, R, JavaScript/TypeScript, Bash</dd>
+</dl>
 
-        <ul>
-            <li>Developing a cross-platform memory storage application with React Native and Flask</li>
-            <li>Exploring advanced neural network architectures and their practical applications in molecular property prediction</li>
-            <li>Building deeper expertise in graph neural networks and PyTorch Geometric</li>
-            <li>Enhancing full-stack development skills with modern frameworks and serverless deployment</li>
-        </ul>
+<h2>Background</h2>
+<p>I came to vision from applied mathematics: statistics, linear algebra, numerical analysis, and Monte Carlo methods. Before focusing on egocentric video, I worked on deep learning for molecular property prediction and built web and mobile apps with Flask, Next.js, and React Native. Those projects are listed on the <a href="/projects/">projects page</a>.</p>
 
-        <hr>
+<h2>Contact</h2>
+<p>Email <a href="mailto:ziluzhou7@gmail.com">ziluzhou7@gmail.com</a>.
+  <!-- TODO: replace with your real profile URLs -->
+  <a href="https://github.com/">GitHub</a>,
+  <a href="https://www.linkedin.com/">LinkedIn</a>.</p>
+</main>
 
-        <h3>What You Can Find Here</h3>
-
-        <ul>
-            <li><strong><a href="/posts/">Posts</a></strong>: Technical writeups, project updates, and learning experiences</li>
-            <li><strong><a href="/projects/">Projects</a></strong>: Showcase of personal projects including ML experiments and web applications</li>
-            <li><strong><a href="/notes/">Notes</a></strong>: Quick thoughts, code snippets, and technical references</li>
-        </ul>
-
-        <h3>Contact Information</h3>
-
-        <p>Feel free to reach out to me via email at <strong>ziluzhou7@gmail.com</strong>.</p>
-
-        <div class="social-links">
-            <a href="https://github.com/" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
-        </div>
-
-        <nav style="margin-top: 30px;">
-            <a href="/posts/">Posts</a>
-            <a href="/projects/">Projects</a>
-            <a href="/notes/">Notes</a>
-        </nav>
-    </main>
-
-    <footer>
-        <p>© 2025 Zilu Zhou. Built with curiosity and caffeine.</p>
-    </footer>
+<footer>© 2026 Zilu Zhou. Built with curiosity and caffeine.</footer>
+</div>
 </body>
 </html>
