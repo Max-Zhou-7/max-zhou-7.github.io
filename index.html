@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zilu Zhou (Max)</title>
-<meta name="description" content="Zilu (Max) Zhou, MS CS student at Northeastern University working on egocentric computer vision: hand-centric perception in multi-person video, multi-wearer video understanding, and JEPA-style world models.">
+<title>Projects | Zilu Zhou (Max)</title>
+<meta name="description" content="Research and projects by Zilu (Max) Zhou: dual-egocentric hand ownership benchmark, JEPA world models for egocentric video, and machine learning projects.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
@@ -83,8 +83,8 @@
   <h1 class="name"><a href="/">Zilu Zhou (Max)</a></h1>
   <p class="tagline">Egocentric computer vision, Northeastern University</p>
   <nav aria-label="Main">
-    <a href="/" aria-current="page">Home</a>
-    <a href="/projects/">Projects</a>
+    <a href="/">Home</a>
+    <a href="/projects/" aria-current="page">Projects</a>
     <a href="/posts/">Posts</a>
     <a href="/notes/">Notes</a>
     <a href="/static/Zilu_Zhou_CV.pdf">CV</a>
@@ -92,79 +92,57 @@
 </header>
 
 <main>
-<p>I’m Zilu Zhou, and I go by Max. I’m a master’s student in Computer Science at Northeastern University’s Khoury College, graduating in December 2026, and a student researcher in <a href="https://ccs.neu.edu/home/eelhami">Prof. Ehsan Elhamifar</a>’s MCADS lab. I work on egocentric computer vision: understanding video recorded from wearable cameras such as smart glasses. Before Northeastern, I studied applied mathematics at UC Santa Barbara.</p>
-<p>I’m looking for research assistant and PhD positions in computer vision. You can reach me at <a href="mailto:ziluzhou7@gmail.com">ziluzhou7@gmail.com</a>.</p>
+<h2>Research</h2>
 
-<h2>Research interests</h2>
+<h3>Dual-egocentric benchmark for hand ownership</h3>
+<p class="meta">MCADS Lab, Northeastern University, advised by Prof. Ehsan Elhamifar. June 2026 – present</p>
+<p>A video benchmark for per-hand ownership attribution during cooperative tasks: given a hand visible in one person’s egocentric video, decide whether it belongs to the camera wearer or to their partner, in close-up views where body and arm cues are out of frame. Ground truth comes from the two wearers observing each other, so each camera supplies the partner-view label for the other. Evaluation is built on contrastive minimal pairs, with swap rate as the main metric and cross-view perspective-flip probes.</p>
+<p>My work so far:</p>
 <ul>
-  <li><strong>Hands in multi-person egocentric video.</strong> When two people work side by side, their hands share the frame while arms and bodies are often out of view. I’m interested in telling whose hand is whose, the wearer’s or a partner’s, and which hand it is, left or right. Current vision-language models still struggle with both.</li>
-  <li><strong>Multi-wearer video understanding.</strong> Using two synchronized egocentric views of the same cooperative activity, where each camera can see what the other misses, and reading a partner’s intent from gestures and other visible cues.</li>
-  <li><strong>World models for anticipation.</strong> JEPA-style models that predict in latent space, for anticipating what comes next in egocentric video and for detecting errors in procedural tasks.</li>
-  <li><strong>Toward AR assistance.</strong> In the long run, I want perception that is fast and reliable enough to drive real-time AR assistants, starting from the perception side and moving toward interaction.</li>
+  <li>Built and validated the capture setup on two Meta Project Aria Gen 1 glasses: cross-device time alignment with TICSync, co-registration of both wearers with Aria MPS multi-SLAM, and checks of recording profiles, SLAM camera streams, and thermal stability before full collection.</li>
+  <li>Designed the cooperative tasks along three axes: physical coupling (from separate work, to handovers, to sustained co-manipulation), coordination structure (parallel, sequential, reciprocal), and resource contention.</li>
+  <li>Collected recordings, tested hand segmentation with SAM 3, and started baseline evaluations of vision-language models.</li>
 </ul>
-
-<h2>Current research</h2>
-<h3>Whose hand is it? A dual-egocentric benchmark for hand ownership</h3>
-<p class="meta">MCADS Lab, Khoury College, advised by Prof. Ehsan Elhamifar. June 2026 – present</p>
-<p>Given a hand visible in one person’s egocentric video during a cooperative task, the benchmark asks whether it belongs to the camera wearer or to their partner, in close-up views where body and arm cues are out of frame. Two people wear Meta Project Aria glasses, time-aligned with TICSync and co-registered in a shared coordinate frame with Aria MPS multi-SLAM.</p>
-
-<figure>
-  <svg viewBox="0 0 640 250" role="img" aria-labelledby="fig-t fig-d">
-    <title id="fig-t">Top-down sketch of the two-wearer capture setup</title>
-    <desc id="fig-d">Two people wearing Aria glasses face each other across a table. Both cameras’ fields of view cover the shared workspace, where one hand from each person meets in the middle.</desc>
-    <path class="fov-a" d="M100 125 L428 44 A 338 338 0 0 1 428 206 Z"/>
-    <path class="fov-b" d="M540 125 L212 44 A 338 338 0 0 0 212 206 Z"/>
-    <rect class="table" x="200" y="62" width="240" height="126" rx="6"/>
-    <path class="arm-a" d="M68 88 Q150 76 246 96"/>
-    <path class="arm-a" d="M68 162 Q175 176 302 142"/>
-    <path class="arm-b" d="M572 88 Q490 76 394 98"/>
-    <path class="arm-b" d="M572 162 Q470 172 340 130"/>
-    <ellipse class="person-a" cx="62" cy="125" rx="18" ry="44"/>
-    <circle class="person-a" cx="80" cy="125" r="19"/>
-    <ellipse class="person-b" cx="578" cy="125" rx="18" ry="44"/>
-    <circle class="person-b" cx="560" cy="125" r="19"/>
-    <ellipse class="hand-a" cx="254" cy="98" rx="13" ry="9"/>
-    <ellipse class="hand-a" cx="308" cy="141" rx="13" ry="9"/>
-    <ellipse class="hand-b" cx="386" cy="100" rx="13" ry="9"/>
-    <ellipse class="hand-b" cx="334" cy="129" rx="13" ry="9"/>
-    <circle class="ask" cx="321" cy="135" r="34"/>
-    <text class="lbl lbl-a" x="70" y="192" text-anchor="middle">Wearer A</text>
-    <text class="lbl lbl-b" x="570" y="192" text-anchor="middle">Wearer B</text>
-    <text class="lbl" x="321" y="212" text-anchor="middle">Whose hand is whose?</text>
-  </svg>
-  <figcaption>Top-down sketch of the setup. Both cameras look at the shared workspace, so each view shows hands from both people with little of their arms or bodies. Because each camera also sees the partner, one view can supply the ownership label for the other.</figcaption>
-</figure>
-
-<p>So far I’ve built and validated the two-headset capture setup, designed the cooperative tasks along three axes (physical coupling, coordination structure, and resource contention), collected recordings, tested hand segmentation with SAM 3, and started baseline evaluations of vision-language models. Next, I plan to build a real-time model that predicts ownership and chirality for each hand in this setting.</p>
+<p>Next, I plan to build a real-time model that predicts ownership (self or partner) and chirality (left or right) for each hand in this setting.</p>
 <p class="status">Status: data collection in progress. We plan an arXiv preprint with baseline results in winter 2026–27.</p>
+<p class="meta">Project Aria SDK, Aria MPS, TICSync, VRS, SAM 3, Python, Slurm</p>
 
-<h2>This semester</h2>
+<h2>Course research, Fall 2026</h2>
+<p>Both projects are in progress.</p>
+
+<h3>Reading a partner’s intent from what is visible</h3>
+<p class="meta">CS 7170, Multimodal Video Understanding seminar, with Angshuman Basu</p>
+<p>Can a model tell what a partner wants before they say it? On two-person cooking sessions from CoMind, the model sees muted first-person video from both people up to the moment just before someone speaks, plus the recipe, and picks the intent their words express from a set of plausible alternatives. What people said gives the labels for free. A frozen video encoder feeds a small transformer that alternates between local and session-level attention, and between within-person and across-person tokens.</p>
+<p>We report accuracy by cue type (gesture, speech, or none) and by how far ahead of speech the prediction is made. We compare against blind, prior, zero-shot video-language, and oracle world-state baselines, and test transfer to IndEgo and HoloAssist. So far we have converted CoMind’s transcripts into about 1,800 labelled intents.</p>
+
+<h3>Filling dropped frames by forecasting in latent space</h3>
+<p class="meta">CS 5330, Pattern Recognition and Computer Vision. Two-person team</p>
+<p>When frames drop out of a single egocentric video stream, an action-conditioned JEPA world model forecasts the missing frames’ latent representations from past frames only.</p>
+
+<h2>Machine learning</h2>
+
+<h3>AlphaZero-style Gomoku agent</h3>
+<p class="meta">March 2026. Python, PyTorch</p>
+<p>Monte Carlo Tree Search guided by a dual-headed policy–value CNN trained from self-play. I built the game environment (legal-move masking, terminal detection) and a pure-MCTS baseline for a controlled comparison.</p>
+
+<h3>Drug toxicity prediction (LD50)</h3>
+<p class="meta">March 2026. Python, PyTorch, scikit-learn, RDKit</p>
+<p>Regression models for acute toxicity on the LD50 Zhu benchmark from Therapeutics Data Commons, using ECFP4 Morgan fingerprints. Comparing linear, random forest, and deep models under random and scaffold splits showed the generalization gap that random-split benchmarking hides.</p>
+
+<h3>Neural architecture comparison for molecular property prediction</h3>
+<p class="meta">November 2025. Python, PyTorch Geometric</p>
+<p>Five architectures (DNN, CNN, RNN/LSTM, Transformer, GNN) for drug classification from SMILES. Graph networks reached 85% accuracy, 12% above the DNN baseline under matched tuning and cross-validation.</p>
+
+<h2>Earlier projects</h2>
 <ul>
-  <li>Predicting what a partner intends before they say it, from muted first-person video of both people, and testing which visible cues such as gestures make that possible (CS 7170, Multimodal Video Understanding, with Angshuman Basu).</li>
-  <li>Action-conditioned latent forecasting to fill in dropped frames of an egocentric video stream with a JEPA world model (CS 5330, Pattern Recognition and Computer Vision).</li>
+  <li><strong>Neural networks from scratch</strong> (2024): implemented and debugged backpropagation by hand for drug classification.</li>
+  <li><strong>Monte Carlo stochastic systems</strong> (2022): Marsaglia–Tsang sampling and Markov chain simulation of the gambler’s ruin and a two-player game.</li>
+  <li><strong>Memory storage app</strong> (2024): Flask REST API with a React Native client for organizing photos and notes.</li>
+  <li><strong>Canvas-style learning platform</strong> (2024): course management and authentication with Next.js and MongoDB.</li>
+  <li><strong>Personal blog</strong> (2024): Flask app deployed on Vercel’s serverless platform.</li>
+  <li><strong>Anti-scam educational game</strong> (2024): Twine interactive fiction that helps older adults recognize scams.</li>
+  <li><strong>Small games</strong> (2024): a Java text adventure built on MVC, and a Python memory card game.</li>
 </ul>
-<p>Details are on the <a href="/projects/">projects page</a>.</p>
-
-<h2>Skills</h2>
-<dl class="skills">
-  <dt>Vision and ML</dt>
-  <dd>PyTorch, PyTorch Geometric, scikit-learn, OpenCV, SAM 3, MediaPipe</dd>
-  <dt>Egocentric capture</dt>
-  <dd>Project Aria SDK, Aria MPS multi-SLAM, TICSync, VRS, camera calibration</dd>
-  <dt>Computing</dt>
-  <dd>Slurm on H200 GPUs (Northeastern Explorer), Docker, Conda, Git</dd>
-  <dt>Languages</dt>
-  <dd>Python, C++, C, Java, R, JavaScript/TypeScript, Bash</dd>
-</dl>
-
-<h2>Background</h2>
-<p>I came to vision from applied mathematics: statistics, linear algebra, numerical analysis, and Monte Carlo methods. Before focusing on egocentric video, I worked on deep learning for molecular property prediction and built web and mobile apps with Flask, Next.js, and React Native. Those projects are listed on the <a href="/projects/">projects page</a>.</p>
-
-<h2>Contact</h2>
-<p>Email <a href="mailto:ziluzhou7@gmail.com">ziluzhou7@gmail.com</a>.
-  <!-- TODO: replace with your real profile URLs -->
-  <a href="https://github.com/">GitHub</a>,
-  <a href="https://www.linkedin.com/">LinkedIn</a>.</p>
 </main>
 
 <footer>© 2026 Zilu Zhou. Built with curiosity and caffeine.</footer>
