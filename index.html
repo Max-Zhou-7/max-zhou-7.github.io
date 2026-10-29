@@ -49,19 +49,6 @@
   .meta { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin: 0 0 .7rem; }
   .status { font-family: var(--sans); font-size: .95rem; }
 
-  figure { margin: 1.5rem 0 1.75rem; }
-  figure svg { display: block; width: 100%; height: auto; }
-  figcaption { font-family: var(--sans); font-size: .88rem; line-height: 1.5; color: var(--muted); margin-top: .5rem; }
-  .fov-a { fill: var(--a-wash); } .fov-b { fill: var(--b-wash); }
-  .table { fill: none; stroke: var(--muted); stroke-opacity: .45; stroke-width: 2; }
-  .arm-a, .arm-b { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-opacity: .5; }
-  .arm-a { stroke: var(--a); } .arm-b { stroke: var(--b); }
-  .person-a, .person-b { fill: var(--paper); stroke-width: 2; }
-  .person-a { stroke: var(--a); } .person-b { stroke: var(--b); }
-  .hand-a { fill: var(--a); } .hand-b { fill: var(--b); }
-  .ask { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 4 4; }
-  .lbl { font: 500 13px var(--sans); fill: var(--muted); }
-  .lbl-a { fill: var(--a); } .lbl-b { fill: var(--b); }
 
   dl.skills { display: grid; grid-template-columns: max-content 1fr; gap: .4rem 1.25rem; margin: 0; }
   dl.skills dt { font-family: var(--sans); font-size: .9rem; color: var(--muted); padding-top: .2rem; }
@@ -80,35 +67,20 @@
 <div class="wrap">
 
 <header class="site">
-  <h1 class="name"><a href="/">Zilu Zhou (Max)</a></h1>
+  <h1 class="name"><a href="../index.html">Zilu Zhou (Max)</a></h1>
   <p class="tagline">Egocentric computer vision, Northeastern University</p>
   <nav aria-label="Main">
-    <a href="/">Home</a>
-    <a href="/projects/" aria-current="page">Projects</a>
-    <a href="/posts/">Posts</a>
-    <a href="/notes/">Notes</a>
-    <a href="/static/Zilu_Zhou_CV.pdf">CV</a>
+    <a href="../index.html">Home</a>
+    <a href="index.html" aria-current="page">Projects</a>
+    <a href="../posts/">Posts</a>
+    <a href="../notes/">Notes</a>
+    <a href="../static/Zilu_Zhou_CV.pdf">CV</a>
   </nav>
 </header>
 
 <main>
-<h2>Research</h2>
-
-<h3>Dual-egocentric benchmark for hand ownership</h3>
-<p class="meta">MCADS Lab, Northeastern University, advised by Prof. Ehsan Elhamifar. June 2026 – present</p>
-<p>A video benchmark for per-hand ownership attribution during cooperative tasks: given a hand visible in one person’s egocentric video, decide whether it belongs to the camera wearer or to their partner, in close-up views where body and arm cues are out of frame. Ground truth comes from the two wearers observing each other, so each camera supplies the partner-view label for the other. Evaluation is built on contrastive minimal pairs, with swap rate as the main metric and cross-view perspective-flip probes.</p>
-<p>My work so far:</p>
-<ul>
-  <li>Built and validated the capture setup on two Meta Project Aria Gen 1 glasses: cross-device time alignment with TICSync, co-registration of both wearers with Aria MPS multi-SLAM, and checks of recording profiles, SLAM camera streams, and thermal stability before full collection.</li>
-  <li>Designed the cooperative tasks along three axes: physical coupling (from separate work, to handovers, to sustained co-manipulation), coordination structure (parallel, sequential, reciprocal), and resource contention.</li>
-  <li>Collected recordings, tested hand segmentation with SAM 3, and started baseline evaluations of vision-language models.</li>
-</ul>
-<p>Next, I plan to build a real-time model that predicts ownership (self or partner) and chirality (left or right) for each hand in this setting.</p>
-<p class="status">Status: data collection in progress. We plan an arXiv preprint with baseline results in winter 2026–27.</p>
-<p class="meta">Project Aria SDK, Aria MPS, TICSync, VRS, SAM 3, Python, Slurm</p>
-
-<h2>Course research, Fall 2026</h2>
-<p>Both projects are in progress.</p>
+<h2>Current projects, Fall 2026</h2>
+<p>Both course projects are in progress.</p>
 
 <h3>Reading a partner’s intent from what is visible</h3>
 <p class="meta">CS 7170, Multimodal Video Understanding seminar, with Angshuman Basu</p>
@@ -118,6 +90,18 @@
 <h3>Filling dropped frames by forecasting in latent space</h3>
 <p class="meta">CS 5330, Pattern Recognition and Computer Vision. Two-person team</p>
 <p>When frames drop out of a single egocentric video stream, an action-conditioned JEPA world model forecasts the missing frames’ latent representations from past frames only.</p>
+
+<h2>Lab work</h2>
+
+<h3>Data collection for a two-person egocentric video project</h3>
+<p class="meta">MCADS Lab, Northeastern University, with Prof. Ehsan Elhamifar. June 2026 – present</p>
+<p>I help with a lab project on hand ownership in cooperative tasks: telling whether a hand seen in one person’s first-person video is theirs or their partner’s.</p>
+<ul>
+  <li>Set up two Meta Project Aria glasses and synchronized them with TICSync, and checked recording profiles, SLAM camera streams, and heat over long recordings.</li>
+  <li>Designed the cooperative tasks and recorded sessions.</li>
+  <li>Tested hand segmentation with SAM 3 and ran early vision-language model evaluations.</li>
+</ul>
+<p class="meta">Project Aria SDK, TICSync, VRS, SAM 3, Python, Slurm</p>
 
 <h2>Machine learning</h2>
 
