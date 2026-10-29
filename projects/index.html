@@ -1,314 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Zilu Zhou's Blog</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects | Zilu Zhou (Max)</title>
+<meta name="description" content="Research and projects by Zilu (Max) Zhou: dual-egocentric hand ownership benchmark, JEPA world models for egocentric video, and machine learning projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --paper: #F8F9FA; --ink: #1D2633; --muted: #5E6876; --rule: #DDE1E6;
+    --a: #2B62C2; --b: #B5671A;
+    --a-wash: rgba(43, 98, 194, .13); --b-wash: rgba(181, 103, 26, .13);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #15181D; --ink: #E3E6EB; --muted: #9AA3AF; --rule: #2B313A;
+      --a: #7FA7EE; --b: #E2A35E;
+      --a-wash: rgba(127, 167, 238, .17); --b-wash: rgba(226, 163, 94, .17);
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+         font: 400 1.125rem/1.65 var(--serif); }
+  .wrap { max-width: 42rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+  header.site { margin-bottom: 2.5rem; }
+  .name { font-size: 2.25rem; line-height: 1.15; font-weight: 600; margin: 0; letter-spacing: -.01em; }
+  .name a { color: inherit; text-decoration: none; }
+  .tagline { font-family: var(--sans); font-size: .95rem; color: var(--muted); margin: .45rem 0 1.1rem; }
+  nav { font-family: var(--sans); font-size: .95rem; display: flex; flex-wrap: wrap; gap: .4rem 1.25rem;
+        border-bottom: 1px solid var(--rule); padding-bottom: .75rem; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--a); }
+  nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+  h2 { font-size: 1.4rem; font-weight: 600; line-height: 1.3; margin: 2.75rem 0 .75rem; }
+  h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.35; margin: 1.75rem 0 .25rem; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--a); text-underline-offset: .15em; }
+  a:focus-visible { outline: 2px solid var(--a); outline-offset: 2px; border-radius: 2px; }
+  ul { padding-left: 1.2rem; margin: 0 0 1rem; }
+  li { margin: .35rem 0; }
+  .meta { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin: 0 0 .7rem; }
+  .status { font-family: var(--sans); font-size: .95rem; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fff;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
 
-        header {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-size: 2em;
-            margin-bottom: 15px;
-        }
-
-        h1 a {
-            color: #333;
-            text-decoration: none;
-        }
-
-        nav {
-            margin-bottom: 20px;
-        }
-
-        nav a {
-            color: #0066cc;
-            text-decoration: none;
-            margin-right: 20px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        h2 {
-            font-size: 1.8em;
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        .project {
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .project:last-child {
-            border-bottom: none;
-        }
-
-        .project h3 {
-            font-size: 1.4em;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        .project-meta {
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 12px;
-        }
-
-        .project-tags {
-            margin-bottom: 12px;
-        }
-
-        .tag {
-            display: inline-block;
-            background-color: #f0f0f0;
-            color: #555;
-            padding: 4px 10px;
-            border-radius: 3px;
-            font-size: 0.85em;
-            margin-right: 8px;
-            margin-bottom: 5px;
-        }
-
-        .project p {
-            margin-bottom: 10px;
-            color: #444;
-        }
-
-        .project ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-
-        .project li {
-            margin-bottom: 8px;
-            color: #444;
-        }
-
-        .project-links a {
-            color: #0066cc;
-            text-decoration: none;
-            margin-right: 15px;
-        }
-
-        .project-links a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            text-align: center;
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        a {
-            color: #0066cc;
-        }
-    </style>
+  dl.skills { display: grid; grid-template-columns: max-content 1fr; gap: .4rem 1.25rem; margin: 0; }
+  dl.skills dt { font-family: var(--sans); font-size: .9rem; color: var(--muted); padding-top: .2rem; }
+  dl.skills dd { margin: 0; }
+  footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+           font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+  @media (max-width: 540px) {
+    .wrap { padding-top: 2rem; }
+    .name { font-size: 1.9rem; }
+    dl.skills { grid-template-columns: 1fr; gap: 0; }
+    dl.skills dd { margin-bottom: .6rem; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1><a href="/">Zilu Zhou's Blog</a></h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/posts/">Posts</a>
-            <a href="/projects/">Projects</a>
-            <a href="/notes/">Notes</a>
-        </nav>
-    </header>
+<div class="wrap">
 
-    <main>
-        <h2>Projects</h2>
+<header class="site">
+  <h1 class="name"><a href="../index.html">Zilu Zhou (Max)</a></h1>
+  <p class="tagline">Egocentric computer vision, Northeastern University</p>
+  <nav aria-label="Main">
+    <a href="../index.html">Home</a>
+    <a href="index.html" aria-current="page">Projects</a>
+    <a href="../posts/">Posts</a>
+    <a href="../notes/">Notes</a>
+    <a href="../static/Zilu_Zhou_CV.pdf">CV</a>
+  </nav>
+</header>
 
-        <div class="project">
-            <h3>Memory Storage Application</h3>
-            <div class="project-meta">Current Project | 2024 - Present</div>
-            <div class="project-tags">
-                <span class="tag">Flask</span>
-                <span class="tag">React Native</span>
-                <span class="tag">Mobile Dev</span>
-                <span class="tag">Full-Stack</span>
-            </div>
-            <p>A cross-platform memory storage application for managing photos and text content with advanced search capabilities.</p>
-            <ul>
-                <li>Built Flask backend with RESTful API for data management</li>
-                <li>Developed React Native frontend for iOS and Android compatibility</li>
-                <li>Implemented keyword filtering and date-based organization</li>
-                <li>Exploring both local and cloud storage solutions for scalability</li>
-            </ul>
-            <div class="project-links">
-                <a href="#">GitHub</a>
-            </div>
-        </div>
+<main>
+<h2>Current projects, Fall 2026</h2>
+<p>Both course projects are in progress.</p>
 
-        <div class="project">
-            <h3>Molecular Property Prediction</h3>
-            <div class="project-meta">Machine Learning | 2024</div>
-            <div class="project-tags">
-                <span class="tag">PyTorch</span>
-                <span class="tag">Graph Neural Networks</span>
-                <span class="tag">Deep Learning</span>
-                <span class="tag">Chemistry ML</span>
-            </div>
-            <p>Comprehensive comparison of five neural network architectures for predicting molecular properties from SMILES representations.</p>
-            <ul>
-                <li>Implemented and compared DNN, CNN, RNN/LSTM, Transformer, and GNN architectures</li>
-                <li>Used PyTorch Geometric for graph-based molecular representations</li>
-                <li>Created unified training pipeline with visualization comparisons</li>
-                <li>Debugged complex data handling issues with graph neural networks</li>
-            </ul>
-        </div>
+<h3>Reading a partner’s intent from what is visible</h3>
+<p class="meta">CS 7170, Multimodal Video Understanding seminar, with Angshuman Basu</p>
+<p>Can a model tell what a partner wants before they say it? On two-person cooking sessions from CoMind, the model sees muted first-person video from both people up to the moment just before someone speaks, plus the recipe, and picks the intent their words express from a set of plausible alternatives. What people said gives the labels for free. A frozen video encoder feeds a small transformer that alternates between local and session-level attention, and between within-person and across-person tokens.</p>
+<p>We report accuracy by cue type (gesture, speech, or none) and by how far ahead of speech the prediction is made. We compare against blind, prior, zero-shot video-language, and oracle world-state baselines, and test transfer to IndEgo and HoloAssist. So far we have converted CoMind’s transcripts into about 1,800 labelled intents.</p>
 
-        <div class="project">
-            <h3>Canvas Replication Web App</h3>
-            <div class="project-meta">Web Development | 2024</div>
-            <div class="project-tags">
-                <span class="tag">Next.js</span>
-                <span class="tag">MongoDB</span>
-                <span class="tag">Full-Stack</span>
-            </div>
-            <p>A learning management system inspired by Canvas, built with modern web technologies.</p>
-            <ul>
-                <li>Developed with Next.js for server-side rendering and optimal performance</li>
-                <li>Integrated MongoDB for flexible data storage</li>
-                <li>Implemented user authentication and course management features</li>
-            </ul>
-            <div class="project-links">
-                <a href="#">GitHub</a>
-            </div>
-        </div>
+<h3>Filling dropped frames by forecasting in latent space</h3>
+<p class="meta">CS 5330, Pattern Recognition and Computer Vision. Two-person team</p>
+<p>When frames drop out of a single egocentric video stream, an action-conditioned JEPA world model forecasts the missing frames’ latent representations from past frames only.</p>
 
-        <div class="project">
-            <h3>Personal Blog Platform</h3>
-            <div class="project-meta">Web Development | 2024</div>
-            <div class="project-tags">
-                <span class="tag">Flask</span>
-                <span class="tag">Python</span>
-                <span class="tag">Vercel</span>
-            </div>
-            <p>Self-taught Flask application deployed to serverless environment.</p>
-            <ul>
-                <li>Built from scratch using Flask framework</li>
-                <li>Deployed to Vercel's serverless platform</li>
-                <li>Solved 404 routing issues and template path configurations</li>
-                <li>Restructured application for serverless architecture compatibility</li>
-            </ul>
-        </div>
+<h2>Lab work</h2>
 
-        <div class="project">
-            <h3>Neural Network Drug Classification</h3>
-            <div class="project-meta">Machine Learning | 2024</div>
-            <div class="project-tags">
-                <span class="tag">PyTorch</span>
-                <span class="tag">Deep Learning</span>
-                <span class="tag">Classification</span>
-            </div>
-            <p>Comparative study of neural network implementations for drug classification tasks.</p>
-            <ul>
-                <li>Implemented multiple neural network architectures from scratch</li>
-                <li>Debugged backpropagation implementations for numerical consistency</li>
-                <li>Resolved cached activation values and derivative computation issues</li>
-                <li>Performed comprehensive accuracy and performance comparisons</li>
-            </ul>
-        </div>
+<h3>Data collection for a two-person egocentric video project</h3>
+<p class="meta">MCADS Lab, Northeastern University, with Prof. Ehsan Elhamifar. June 2026 – present</p>
+<p>I help with a lab project on hand ownership in cooperative tasks: telling whether a hand seen in one person’s first-person video is theirs or their partner’s.</p>
+<ul>
+  <li>Set up two Meta Project Aria glasses and synchronized them with TICSync, and checked recording profiles, SLAM camera streams, and heat over long recordings.</li>
+  <li>Designed the cooperative tasks and recorded sessions.</li>
+  <li>Tested hand segmentation with SAM 3 and ran early vision-language model evaluations.</li>
+</ul>
+<p class="meta">Project Aria SDK, TICSync, VRS, SAM 3, Python, Slurm</p>
 
-        <div class="project">
-            <h3>Monte Carlo Stochastic Systems</h3>
-            <div class="project-meta">Mathematical Computing | 2022</div>
-            <div class="project-tags">
-                <span class="tag">Python</span>
-                <span class="tag">Statistics</span>
-                <span class="tag">Monte Carlo</span>
-            </div>
-            <p>Applied Monte Carlo methods to analyze stochastic systems and game theory problems.</p>
-            <ul>
-                <li>Implemented Marsaglia-Tsang algorithm for efficient sampling</li>
-                <li>Used Markov Chain Monte Carlo methods for gambler's ruin problem</li>
-                <li>Analyzed two-player game properties through probabilistic simulation</li>
-            </ul>
-        </div>
+<h2>Machine learning</h2>
 
-        <div class="project">
-            <h3>Anti-Scam Educational Game</h3>
-            <div class="project-meta">Game Development | 2024</div>
-            <div class="project-tags">
-                <span class="tag">Twine</span>
-                <span class="tag">Interactive Fiction</span>
-                <span class="tag">Education</span>
-            </div>
-            <p>Interactive educational game designed to help elderly people recognize and avoid scams.</p>
-            <ul>
-                <li>Created engaging narrative-based scenarios</li>
-                <li>Implemented decision-tree gameplay mechanics</li>
-                <li>Focused on real-world scam prevention strategies</li>
-            </ul>
-        </div>
+<h3>AlphaZero-style Gomoku agent</h3>
+<p class="meta">March 2026. Python, PyTorch</p>
+<p>Monte Carlo Tree Search guided by a dual-headed policy–value CNN trained from self-play. I built the game environment (legal-move masking, terminal detection) and a pure-MCTS baseline for a controlled comparison.</p>
 
-        <div class="project">
-            <h3>MVC Text-Based Game</h3>
-            <div class="project-meta">Software Engineering | 2024</div>
-            <div class="project-tags">
-                <span class="tag">Java</span>
-                <span class="tag">MVC</span>
-                <span class="tag">OOP</span>
-            </div>
-            <p>Object-oriented text-based game demonstrating Model-View-Controller architecture.</p>
-            <ul>
-                <li>Implemented clean MVC separation of concerns</li>
-                <li>Applied object-oriented design principles</li>
-                <li>Created extensible game engine architecture</li>
-            </ul>
-        </div>
+<h3>Drug toxicity prediction (LD50)</h3>
+<p class="meta">March 2026. Python, PyTorch, scikit-learn, RDKit</p>
+<p>Regression models for acute toxicity on the LD50 Zhu benchmark from Therapeutics Data Commons, using ECFP4 Morgan fingerprints. Comparing linear, random forest, and deep models under random and scaffold splits showed the generalization gap that random-split benchmarking hides.</p>
 
-        <div class="project">
-            <h3>Python Memory Card Game</h3>
-            <div class="project-meta">Game Development | 2024</div>
-            <div class="project-tags">
-                <span class="tag">Python</span>
-                <span class="tag">Game Dev</span>
-            </div>
-            <p>Classic memory matching game built with Python.</p>
-            <ul>
-                <li>Implemented game logic and state management</li>
-                <li>Created interactive user interface</li>
-                <li>Applied algorithmic thinking to game mechanics</li>
-            </ul>
-        </div>
+<h3>Neural architecture comparison for molecular property prediction</h3>
+<p class="meta">November 2025. Python, PyTorch Geometric</p>
+<p>Five architectures (DNN, CNN, RNN/LSTM, Transformer, GNN) for drug classification from SMILES. Graph networks reached 85% accuracy, 12% above the DNN baseline under matched tuning and cross-validation.</p>
 
-        <nav style="margin-top: 40px;">
-            <a href="/">← Back to Home</a>
-        </nav>
-    </main>
+<h2>Earlier projects</h2>
+<ul>
+  <li><strong>Neural networks from scratch</strong> (2024): implemented and debugged backpropagation by hand for drug classification.</li>
+  <li><strong>Monte Carlo stochastic systems</strong> (2022): Marsaglia–Tsang sampling and Markov chain simulation of the gambler’s ruin and a two-player game.</li>
+  <li><strong>Memory storage app</strong> (2024): Flask REST API with a React Native client for organizing photos and notes.</li>
+  <li><strong>Canvas-style learning platform</strong> (2024): course management and authentication with Next.js and MongoDB.</li>
+  <li><strong>Personal blog</strong> (2024): Flask app deployed on Vercel’s serverless platform.</li>
+  <li><strong>Anti-scam educational game</strong> (2024): Twine interactive fiction that helps older adults recognize scams.</li>
+  <li><strong>Small games</strong> (2024): a Java text adventure built on MVC, and a Python memory card game.</li>
+</ul>
+</main>
 
-    <footer>
-        <p>© 2025 Zilu Zhou. Built with curiosity and caffeine.</p>
-    </footer>
+<footer>© 2026 Zilu Zhou. Built with curiosity and caffeine.</footer>
+</div>
 </body>
 </html>
